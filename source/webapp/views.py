@@ -1,8 +1,7 @@
-from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from django.urls.base import reverse_lazy, reverse
 from django.views.generic import ListView, DetailView, DeleteView, UpdateView, CreateView
-from webapp.models import Image, Commit
+from webapp.models import Image
 from webapp.forms import ImageForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.core.exceptions import PermissionDenied

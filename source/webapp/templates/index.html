@@ -14,7 +14,7 @@
                     <p id="rating_${item.id}">{{ image_one.like }}</p>
                 {% if request.user.is_authenticated %}
                     <p><a href="#" class="btn btn-success" onclick="rateUp({{ image_one.pk }})" id="{{ image_one.pk }}">+</a></p>
-                    <p><a href="#" class="btn btn-danger" id="{{ image_one.pk }}">-</a></p>
+                    <p><a href="#" class="btn btn-danger" onclick="rateUp({{ image_one.pk }})" id="{{ image_one.pk }}">-</a></p>
                 {% endif %}
                     <div class="for_button">
                         <a href="{% url 'webapp:image' image_one.pk %}" class="btn btn1">More >>></a>
