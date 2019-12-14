@@ -37,8 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
-    'rest_framework.authtoken'
+    'widget_tweaks',
+    # 'rest_framework',
+    # 'rest_framework.authtoken'
     'webapp',
     'api_v1',
 ]
@@ -125,3 +126,8 @@ STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 MEDIA_URL = '/uploads/'
+
+
+LOGIN_URL = "login"
+LOGIN_REDIRECT_URL = "webapp:index"
+LOGOUT_REDIRECT_URL = "webapp:index"
