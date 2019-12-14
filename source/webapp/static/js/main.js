@@ -1,6 +1,27 @@
+console.log('tets')
+
 const baseUrl = 'http://localhost:8000/api/v1/';
+
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+var csrftoken = getCookie('csrftoken');
+
+console.log(csrftoken);
+console.log('yes')
 function rateUp(id) {
-    let request = makeRequest('commit/' + id + '/like_up', 'post', false);
+    let request = makeRequest('commit/' + id + '/like_up', 'post', true);
     request.done(function(data, status, response) {
         console.log('Rated up quote with id ' + id + '.');
         $('#like_' + id).text(data.like);
@@ -11,7 +32,7 @@ function rateUp(id) {
 }
 
 function rateDown(id) {
-    let request = makeRequest('image/' + id + '/like_down', 'post', false);
+    let request = makeRequest('commit/' + id + '/like_down', 'post', true);
     request.done(function(data, status, response) {
         console.log('Rated up quote with id ' + id + '.');
         $('#like_' + id).text(data.like);
@@ -32,7 +53,7 @@ function makeRequest(path, method, auth=true, data=null) {
         settings['contentType'] = 'application/json';
     }
     if (auth) {
-        settings.headers = {'Authorization': 'Token ' + getToken()};
+        settings.headers = {"X-CSRFToken": getCookie('csrftoken')};
     }
     return $.ajax(settings);
 }
